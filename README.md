@@ -25,6 +25,14 @@ As for data flow, We should decide on what database/hosting to use so that we ca
 
 Feel free to update this README with any changes/updates/weird things in the project just so we have a log of what needs fixing, adding, changing, etc.
 
+# Color Palette
+https://coolors.co/fb3640-605f5e-1d3461-1f487e-247ba0
+Main: #1D3461 - Space Cadet
+
+## Helpful Links
+ - https://ionicons.com/
+ - https://docs.google.com/document/d/1VnJXDyeujRImqZfhIHzo5I-0_W2QPP_d3TdCj6qW0Nw/edit
+
 ## CHANGELOG
 
 
