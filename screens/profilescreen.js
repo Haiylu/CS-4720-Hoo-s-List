@@ -14,7 +14,7 @@ export default class ProfileScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#FB3640', //Coral Red
+      backgroundColor: '#1D3461',
       alignItems: 'center',
       justifyContent: 'center'
     },

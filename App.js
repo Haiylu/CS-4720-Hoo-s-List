@@ -21,7 +21,7 @@ defaultNavigationOptions: ({ navigation }) => ({
   }),
   initalRouteName: 'Profile',
   barStyle: { backgroundColor: '#1F487E'},
-  shifting: true
+  shifting: true,
 }
 );
 

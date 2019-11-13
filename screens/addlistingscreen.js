@@ -14,7 +14,7 @@ export default class AddListingScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#605F5E', //Granite Grey
+      backgroundColor: '#1D3461',
       alignItems: 'center',
       justifyContent: 'center'
     },

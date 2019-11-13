@@ -14,7 +14,7 @@ export default class SearchScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#247BA0', //Lapis Lazuli
+      backgroundColor: '#1D3461',
       alignItems: 'center',
       justifyContent: 'center'
     },
