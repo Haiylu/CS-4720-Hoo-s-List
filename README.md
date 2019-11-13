@@ -30,8 +30,9 @@ https://coolors.co/fb3640-605f5e-1d3461-1f487e-247ba0
 Main: #1D3461 - Space Cadet
 
 ## Helpful Links
- - https://ionicons.com/
- - https://docs.google.com/document/d/1VnJXDyeujRImqZfhIHzo5I-0_W2QPP_d3TdCj6qW0Nw/edit
+ - Icons: https://ionicons.com/
+ - Google Doc: https://docs.google.com/document/d/1VnJXDyeujRImqZfhIHzo5I-0_W2QPP_d3TdCj6qW0Nw/edit
+ - MaterialBottomTabNavigator: https://reactnavigation.org/docs/en/material-bottom-tab-navigator.html
 
 ## CHANGELOG
 
