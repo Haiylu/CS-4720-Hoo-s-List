@@ -1,2 +1,16 @@
 # CS-4720-Hoo-s-List
 Allows college student to buy and sell products
+
+# Setup Instructions
+
+1) Clone repo
+2) cd into the app folder
+3) Run 'npm install' to install all the dependencies
+4) Try 'expo start' to see if expo will spin up a development server
+5) You may need to reinstall/update expo cli, fresh install is 'npm install -g expo-cli'
+
+# Development Instructions
+
+I think the best practice is going to be having master always be a building, working, no errors version of the app. So only push to master if your code works completely and you can sucessfully merge the code with any other changes. 
+
+We should each create our own 'branch' for doing development, this way we can easily push and merge code. I recommend using Git Kraken (https://www.gitkraken.com/) for github file managing. Its really easy to use and setup and has a lot of tools to merge and see changes in files. 
