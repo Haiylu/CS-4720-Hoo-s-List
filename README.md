@@ -13,4 +13,18 @@ Allows college student to buy and sell products
 
 I think the best practice is going to be having master always be a building, working, no errors version of the app. So only push to master if your code works completely and you can sucessfully merge the code with any other changes. 
 
-We should each create our own 'branch' for doing development, this way we can easily push and merge code. I recommend using Git Kraken (https://www.gitkraken.com/) for github file managing. Its really easy to use and setup and has a lot of tools to merge and see changes in files. 
+We should each create our own 'branch' for doing development, this way we can easily push and merge code. I recommend using Git Kraken (https://www.gitkraken.com/) for github file managing. Its really easy to use and setup, and has a lot of tools to merge and see changes in files. 
+
+# Design Thoughts
+
+So for how we structure the app, I currently have 3 'screens' set up [Profile, Search, Add Listing]. These will be the main files that you edit the JSX of the 'return' statement to modify which components are displayed on which screens. Any components you create should go into the 'components' folder, and be imported to the screen files.
+
+As for data flow, We should decide on what database/hosting to use so that we can get the dataflow up and running. This will be the main thing that holds development back since it is critical for how we display components. At the moment it will likely be necessary to create some dummy object in the 'screens' file you are working on, and use that to pass data to your components.
+
+# Misc
+
+Feel free to update this README with any changes/updates/weird things in the project just so we have a log of what needs fixing, adding, changing, etc.
+
+## CHANGELOG
+
+
