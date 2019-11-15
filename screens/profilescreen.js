@@ -1,22 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { Dimensions } from 'react-native';
+import Carousel from 'react-native-carousel-view';
+//import FBLoginButton from '../components/fbloginbutton'
+import ProfileCard from '../components/profilecard'
+import ListingCard from '../components/listingcard'
+import CarouselView from '../components/carouselview'
 
 export default class ProfileScreen extends React.Component {
     render(){
         return(
             <View style={styles.container}>
-                <Text style={styles.textStyle}>This is the Profile Screen</Text>
+                <ProfileCard />
+                <Text style={styles.textStyle}>Active Listings</Text>
+                <CarouselView /> 
             </View>
         )
     }
 }
 
+
+const profileData = {
+    name: 'Jack Renner',
+}
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      flexDirection:'column',
       backgroundColor: '#1D3461',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
+    },
+    listingContainer: {
     },
     textStyle: {
         color:'white',
@@ -24,3 +40,5 @@ const styles = StyleSheet.create({
         fontFamily: 'Futura'
     }
 });
+
+//AppRegistry.registerComponent('Hoos List', () => App);
