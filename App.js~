@@ -8,7 +8,6 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 
-
 //MaterialBottomTabNavigator
 const TabNavigator = createMaterialBottomTabNavigator({
   Profile: ProfileScreen,
@@ -38,7 +37,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   } else if (routeName === 'Add') {
     iconName = `ios-add-circle`;
   }
-
+  
   return <IconComponent name={iconName} size={25} color={tintColor} />;
  };
 
