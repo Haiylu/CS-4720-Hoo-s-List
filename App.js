@@ -61,10 +61,19 @@ const RootStack = createStackNavigator({
 
 const AppContainer = createAppContainer(RootStack);
 
-export default function App() {
-  return (
-    <AppContainer/>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '0'
+    };
+  }
+
+  render() {
+    return (
+      <AppContainer/>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
