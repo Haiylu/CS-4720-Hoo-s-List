@@ -3,7 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import ProfileScreen from './screens/profilescreen.js';
 import SearchScreen from './screens/searchscreen.js';
 import AddListingScreen from './screens/addlistingscreen.js';
+import DetailScreen from './screens/detailscreen.js';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
@@ -41,7 +43,23 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   return <IconComponent name={iconName} size={25} color={tintColor} />;
  };
 
-const AppContainer = createAppContainer(TabNavigator);
+//Stack Navigator
+const RootStack = createStackNavigator({
+  TabNav: {
+    screen: TabNavigator,
+  },
+  Details: {
+    screen: DetailScreen,
+  }
+},
+  {
+    headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+  }
+})
+
+const AppContainer = createAppContainer(RootStack);
 
 export default function App() {
   return (

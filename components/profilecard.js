@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import girl from '../assets/4.png'
 
@@ -11,8 +12,20 @@ export default class ProfileCard extends React.Component {
     render(){
         return(
             <View style={styles.container}>
-                <View>
+                <View style={styles.topContainer}>
+                    <TouchableOpacity>
+                        <Ionicons name={'logo-facebook'} size={35} color={'white'} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                         <Ionicons name={'logo-linkedin'} size={35} color={'white'} />
+                    </TouchableOpacity>
                     <Image style={styles.profileImg} source={girl} />
+                    <TouchableOpacity>
+                         <Ionicons name={'md-images'} size={35} color={'white'} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Ionicons name={'md-list'} size={35} color={'white'} />
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.textStyle}>Jack Renner</Text>
@@ -40,8 +53,14 @@ const styles = StyleSheet.create({
         elevation: 1,
         marginBottom:20,
         paddingTop:20,
-        height:200,
+        height:180,
         width:'100%'
+    },
+    topContainer: {
+        flexDirection:'row',
+        justifyContent:'space-evenly',
+        alignItems:'center',
+        width:'90%'
     },
     textStyle: {
         color:'white',

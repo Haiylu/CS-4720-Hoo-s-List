@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { withNavigation } from 'react-navigation';
 
 import desk from '../assets/desk.jpeg'
 
@@ -16,7 +17,7 @@ const listing = {
     location:'199 Washington Ave.'
 }
 
-export default class ListingCard extends React.Component {
+class ListingCard extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -36,7 +37,7 @@ export default class ListingCard extends React.Component {
                         <TouchableOpacity>
                             <Ionicons name={'md-star'} size={35} color={'white'} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Details')}>
                             <Ionicons name={'md-list'} size={35} color={'white'} />
                         </TouchableOpacity> 
                     </View>
@@ -45,6 +46,8 @@ export default class ListingCard extends React.Component {
         )
     }
 }
+
+export default withNavigation(ListingCard);
 
 const styles = StyleSheet.create({
     container: {

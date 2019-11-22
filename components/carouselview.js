@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import ListingCard from './listingcard';
 import { Dimensions } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 export default function CaroselView(props) {
   let deviceWidth = Dimensions.get('window').width;

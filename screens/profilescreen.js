@@ -6,6 +6,7 @@ import Carousel from 'react-native-carousel-view';
 import ProfileCard from '../components/profilecard'
 import ListingCard from '../components/listingcard'
 import CarouselView from '../components/carouselview'
+import { withNavigation } from 'react-navigation';
 
 export default class ProfileScreen extends React.Component {
     render(){
@@ -13,7 +14,7 @@ export default class ProfileScreen extends React.Component {
             <View style={styles.container}>
                 <ProfileCard />
                 <Text style={styles.textStyle}>Active Listings</Text>
-                <CarouselView /> 
+                <CarouselView navigation={this.props.navigation}/> 
             </View>
         )
     }
