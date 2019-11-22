@@ -37,7 +37,7 @@ class ListingCard extends React.Component {
                         <TouchableOpacity>
                             <Ionicons name={'md-star'} size={35} color={'white'} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Details')}>
+                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Details',{listing: listing})}>
                             <Ionicons name={'md-list'} size={35} color={'white'} />
                         </TouchableOpacity> 
                     </View>
