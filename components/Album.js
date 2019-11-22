@@ -1,38 +1,17 @@
 import React from 'react';
 import { StyleSheet, View, Image, ScrollView, Dimensions } from 'react-native';
+import styles from './styles';
 
 export default ({captures=[]}) => (
     <ScrollView 
         horizontal={true}
-        style={[styles.bottomToolbar, styles.galleryContainer]} 
+        style={[styles.bottomToolbar, styles.albumContainer]} 
     >
         {captures.map(({ uri }) => (
-            <View style={styles.galleryImageContainer} key={uri}>
-                <Image source={{ uri }} style={styles.galleryImage} />
+            <View style={styles.albumImageContainer} key={uri}>
+                <Image source={{ uri }} style={styles.albumImage} />
             </View>
         ))}
     </ScrollView>
 );
 
-const { width: winWidth, height: winHeight } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-    bottomToolbar: {
-        width: winWidth,
-        position: 'absolute',
-        height: 100,
-        bottom: 0,
-    },
-    galleryContainer: { 
-        bottom: 100 
-    },
-    galleryImageContainer: { 
-        width: 75, 
-        height: 75, 
-        marginRight: 5 
-    },
-    galleryImage: { 
-        width: 75, 
-        height: 75 
-    }
-});

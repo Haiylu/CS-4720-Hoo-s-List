@@ -1,9 +1,9 @@
-// src/toolbar.component.js file
 import React from 'react';
 import { Camera } from 'expo-camera';
 import { Ionicons } from '@expo/vector-icons';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { StyleSheet, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import styles from './styles';
 
 const { FlashMode: CameraFlashModes, Type: CameraTypes } = Camera.Constants;
 
@@ -16,7 +16,7 @@ export default ({
 }) => (
     <Grid style={styles.bottomToolbar}>
         <Row>
-            <Col style={styles.alignCenter}>
+            <Col style={styles.container}>
                 <TouchableOpacity onPress={() => setFlashMode( 
                     flashMode === CameraFlashModes.on ? CameraFlashModes.off : CameraFlashModes.on 
                 )}>
@@ -27,7 +27,7 @@ export default ({
                     />
                 </TouchableOpacity>
             </Col>
-            <Col size={2} style={styles.alignCenter}>
+            <Col size={2} style={styles.container}>
                 <TouchableWithoutFeedback
                     onPressIn={onCaptureIn}
                     onPressOut={onCaptureOut}
@@ -37,7 +37,7 @@ export default ({
                     </View>
                 </TouchableWithoutFeedback>
             </Col>
-            <Col style={styles.alignCenter}>
+            <Col style={styles.container}>
                 <TouchableOpacity onPress={() => setCameraType(
                     cameraType === CameraTypes.back ? CameraTypes.front : CameraTypes.back
                 )}>
@@ -51,30 +51,3 @@ export default ({
         </Row>
     </Grid>
 );
-
-const styles = StyleSheet.create({
-    alignCenter: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    captureBtn: {
-        width: 60,
-        height: 60,
-        borderWidth: 2,
-        borderRadius: 60,
-        borderColor: "#FFFFFF",
-    },
-    captureBtnActive: {
-        width: 80,
-        height: 80,
-    },
-    captureBtnInternal: {
-        width: 76,
-        height: 76,
-        borderWidth: 2,
-        borderRadius: 76,
-        backgroundColor: "red",
-        borderColor: "transparent",
-    }
-});
