@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import CameraAccess from '../components/CameraAccess'
+import Controls from '../components/Controls'
 
 export default class AddListingScreen extends React.Component {
     render(){
         return(
             <View >
                 <CameraAccess />
+                
             </View>
         )
     }
