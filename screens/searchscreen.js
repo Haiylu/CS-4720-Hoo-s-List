@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView, ActivityIndicator, Dimensions } from 'react-native';
 import {header, Button, SearchBar, ListItem, List} from 'react-native-elements';
 import _ from "lodash";
 
@@ -9,6 +9,24 @@ import _ from "lodash";
 export default class SearchScreen extends React.Component {
     constructor(props){
     super();
+    const userData = {
+        1:{
+            first: "Jack",
+            last:"Renner"
+        },
+        2:{
+            first: "Tom",
+            last:"Riddler"
+        },
+        3:{
+            first: "Harry",
+            last:"Potter"
+        },
+        4:{
+            first: "Dan",
+            last:"Smith"
+        }
+    }
     
     this.state = { 
         loading: false,
@@ -23,7 +41,6 @@ export default class SearchScreen extends React.Component {
       if (first.includes(query) || last.includes(query)) {
         return true;
       }
-    
       return false;
     };
     
@@ -53,8 +70,8 @@ export default class SearchScreen extends React.Component {
 
   handleSearch = text => {
     console.log(text);
-    this.setState({query: text });
-    console.log(this.state.query);
+    this.setState({query: text});
+    console.log(this.state.query)
   };
  
   componentDidMount() {
@@ -90,7 +107,7 @@ export default class SearchScreen extends React.Component {
     );
   };
   renderHeader = () => {
-    return<SearchBar placeholder="Type Here..." lightTheme round onChangeText={this.handleSearch} />
+    return <SearchBar placeholder="Type Here..." lightTheme round onChangeText={this.handleSearch} />
   };
 
   renderFooter = () => {
@@ -117,11 +134,11 @@ export default class SearchScreen extends React.Component {
           data={this.state.data}
           fullData={this.state.data}
           renderItem={({ item }) => ( 
-            <Text>
+            <Text key={item.login.uuid}>
               {`${item.name.first} ${item.name.last}`}
           </Text>
           )}
-          keyExtractor={item => item}
+          keyExtractor={item => item.login.uuid}
           ItemSeparatorComponent={this.renderSeparator}
           ListHeaderComponent={this.renderHeader}
           ListFooterComponent={this.renderFooter}
@@ -133,10 +150,9 @@ export default class SearchScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "#F5FCFF",
   },
   headerStyle: {
     justifyContent: "flex-end"
