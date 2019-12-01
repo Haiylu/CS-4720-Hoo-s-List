@@ -11,6 +11,10 @@ const listing = {
     owner:{
         name:'Jack Renner',
     },
+    coords:{
+        latitude: 38.0293,
+        longitude: -78.4767
+    },
     price:'$150.00',
     type:'Furniture',
     description:'This is a 2010 IKEA Malmo desk that is in great condition. It has 3 drawers, and plenty of space to work on.',
@@ -23,6 +27,15 @@ class ListingCard extends React.Component {
     }
 
     render(){
+        if (this.props.details!==true) {
+            var detailButton = 
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Details',{listing: listing})}>
+                <Ionicons name={'md-list'} size={35} color={'white'} />
+            </TouchableOpacity>;
+        }
+        else{
+            var detailButton;
+        }
         return(
             <View style={styles.container}>
                 <Image style={styles.itemImg} source={desk} />
@@ -37,9 +50,7 @@ class ListingCard extends React.Component {
                         <TouchableOpacity>
                             <Ionicons name={'md-star'} size={35} color={'white'} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Details',{listing: listing})}>
-                            <Ionicons name={'md-list'} size={35} color={'white'} />
-                        </TouchableOpacity> 
+                        {detailButton}
                     </View>
                 </View>
             </View>
