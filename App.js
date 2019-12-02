@@ -10,7 +10,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 
-
+console.log(process.env.REACT_APP_GOOGLE_API_KEY)
 //MaterialBottomTabNavigator
 const TabNavigator = createMaterialBottomTabNavigator({
   Profile: ProfileScreen,

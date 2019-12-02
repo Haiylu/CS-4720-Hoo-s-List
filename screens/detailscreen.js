@@ -41,7 +41,7 @@ export default class DetailScreen extends React.Component {
     
     render(){
         const data = this.props.navigation.getParam('listing')
-        const GOOGLE_MAPS_APIKEY = 'AIzaSyCB2r0p4PXdsuftWd_Yt52V-pGQTv6BimY';
+        const REACT_APP_GOOGLE_API_KEY=""
 
         return(
             <View style={styles.container}>
@@ -57,18 +57,18 @@ export default class DetailScreen extends React.Component {
                 style={styles.mapStyle}
                 initialRegion={this.state.initialRegion}
                 showsUserLocation={true}>
-                    <MapView.Marker coordinate={this.state.destination}>
-                        
-                    </MapView.Marker>
 
+                    <MapView.Marker coordinate={this.state.destination}>
+                    </MapView.Marker>
 
                     <MapViewDirections
                         origin={this.state.origin.coords}
                         destination={this.state.destination}
-                        apikey={GOOGLE_MAPS_APIKEY}
+                        apikey={REACT_APP_GOOGLE_API_KEY}
                         strokeWidth={3}
                         strokeColor="blue"
                     />
+
                 </MapView>
 
                 <View style={styles.controlContainer}>
