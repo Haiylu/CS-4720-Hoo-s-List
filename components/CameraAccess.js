@@ -1,20 +1,20 @@
-// src/camera.page.js file
 import React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import Controls from './Controls';
 import Album from './Album';
+import styles from './styles';
 
-export default class CameraAccess extends React.Component {
+export default class CameraPage extends React.Component {
     camera = null;
 
     state = {
         captures: [],
         capturing: null,
-        flashMode: Camera.Constants.FlashMode.off,
+        hasCameraPermission: null,
         cameraType: Camera.Constants.Type.back,
-        cameraPermission: null,
+        flashMode: Camera.Constants.FlashMode.off,
     };
 
     setFlashMode = (flashMode) => this.setState({ flashMode });
@@ -33,17 +33,17 @@ export default class CameraAccess extends React.Component {
 
     async componentDidMount() {
         const camera = await Permissions.askAsync(Permissions.CAMERA);
-        const cameraPermission = (camera.status === 'granted');
+        const hasCameraPermission = (camera.status === 'granted');
 
-        this.setState({ cameraPermission });
+        this.setState({ hasCameraPermission });
     };
 
     render() {
-        const { cameraPermission, flashMode, cameraType } = this.state;
+        const { hasCameraPermission, flashMode, cameraType, capturing, captures } = this.state;
 
-        if (cameraPermission === null) {
+        if (hasCameraPermission === null) {
             return <View />;
-        } else if (cameraPermission === false) {
+        } else if (hasCameraPermission === false) {
             return <Text>Access to camera has been denied.</Text>;
         }
 
@@ -51,14 +51,15 @@ export default class CameraAccess extends React.Component {
             <React.Fragment>
                 <View>
                     <Camera
-                        style={styles.preview}
                         type={cameraType}
                         flashMode={flashMode}
+                        style={styles.preview}
                         ref={camera => this.camera = camera}
                     />
                 </View>
-{/*                 
+
                 {captures.length > 0 && <Album captures={captures}/>}
+
                 <Controls
                     capturing={capturing}
                     flashMode={flashMode}
@@ -68,22 +69,8 @@ export default class CameraAccess extends React.Component {
                     onCaptureIn={this.handleCaptureIn}
                     onCaptureOut={this.handleCaptureOut}
                     onShortCapture={this.handleShortCapture}
-                /> */}
+                />
             </React.Fragment>
         );
     };
 };
-
-const { width: winWidth, height: winHeight } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-    preview: {
-        height: winHeight,
-        width: winWidth,
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
-    }
-});
