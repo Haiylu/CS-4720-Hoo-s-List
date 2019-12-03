@@ -28,7 +28,7 @@ export default class DetailScreen extends React.Component {
             var lat = result.coords.latitude
             var long = result.coords.longitude
             this.setState({origin: result, initialRegion:{
-                latitude:lat,
+                latitude:lat+0.03,
                 longitude:long,
                 latitudeDelta: 0.15,
                 longitudeDelta: 0.15,
@@ -41,7 +41,7 @@ export default class DetailScreen extends React.Component {
     
     render(){
         const data = this.props.navigation.getParam('listing')
-        const REACT_APP_GOOGLE_API_KEY=""
+        const REACT_APP_GOOGLE_API_KEY="AIzaSyBE_ecf12sZIC2lssKjB_BoQEbnm2Sy3w4"
 
         return(
             <View style={styles.container}>
@@ -55,7 +55,7 @@ export default class DetailScreen extends React.Component {
                 
                 <MapView 
                 style={styles.mapStyle}
-                initialRegion={this.state.initialRegion}
+                region={this.state.initialRegion}
                 showsUserLocation={true}>
 
                     <MapView.Marker coordinate={this.state.destination}>
@@ -75,7 +75,7 @@ export default class DetailScreen extends React.Component {
                     <TouchableOpacity style={styles.buttonStyle} onPress={()=> this.props.navigation.goBack()}>
                         <Ionicons name={'md-arrow-back'} size={20} color={'white'} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonStyle} onPress={()=> this.props.navigation.goBack()}>
+                    <TouchableOpacity style={styles.buttonStyle} onPress={()=> this.props.navigation.navigate('Chat')}>
                         <Text style={styles.textStyle}>Open Chat</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttonStyle} onPress={()=> this.props.navigation.goBack()}>

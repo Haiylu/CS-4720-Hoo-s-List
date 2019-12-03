@@ -26,7 +26,7 @@ if (!firebase.apps.length) {
 
 let ref = firebase.database().ref('messages');
 
-export default class App extends React.Component {
+export default class ChatScreen extends React.Component {
   constructor() {
     super();
     this.state = {

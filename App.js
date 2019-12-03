@@ -4,13 +4,16 @@ import ProfileScreen from './screens/profilescreen.js';
 import SearchScreen from './screens/searchscreen.js';
 import AddListingScreen from './screens/addlistingscreen.js';
 import DetailScreen from './screens/detailscreen.js';
+import ChatScreen from './screens/Chat.js';
+import SignInScreen from './screens/SignInScreen.js';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createAppContainer } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 
-console.log(process.env.REACT_APP_GOOGLE_API_KEY)
+
+
 //MaterialBottomTabNavigator
 const TabNavigator = createMaterialBottomTabNavigator({
   Profile: ProfileScreen,
@@ -46,11 +49,17 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 
 //Stack Navigator
 const RootStack = createStackNavigator({
+  SignIn: {
+    screen: SignInScreen
+  },
   TabNav: {
     screen: TabNavigator,
   },
   Details: {
     screen: DetailScreen,
+  },
+  Chat: {
+    screen: ChatScreen,
   }
 },
   {
