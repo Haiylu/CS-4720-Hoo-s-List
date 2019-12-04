@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation';
 
 import desk from '../assets/desk.jpeg'
 
-const listing = {
+const temp = {
     id:'uniqueID',
     img:'image source',
     owner:{
@@ -26,7 +26,9 @@ class ListingCard extends React.Component {
         super(props);
     }
 
+
     render(){
+        var listing = this.props.listingData
         if (this.props.details!==true) {
             var detailButton = 
             <TouchableOpacity onPress={()=> this.props.navigation.navigate('Details',{listing: listing})}>

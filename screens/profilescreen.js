@@ -9,10 +9,12 @@ import CarouselView from '../components/carouselview'
 import { withNavigation } from 'react-navigation';
 
 export default class ProfileScreen extends React.Component {
+    
     render(){
+        const userData = this.props.navigation.getParam('userData')
         return(
             <View style={styles.container}>
-                <ProfileCard />
+                <ProfileCard userData={userData}/>
                 <Text style={styles.textStyle}>Active Listings</Text>
                 <CarouselView navigation={this.props.navigation}/> 
             </View>

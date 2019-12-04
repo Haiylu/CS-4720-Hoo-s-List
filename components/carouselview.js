@@ -4,21 +4,21 @@ import Carousel from 'react-native-snap-carousel';
 import ListingCard from './listingcard';
 import { Dimensions } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import data from '../assets/data.js'
 
 export default function CaroselView(props) {
   let deviceWidth = Dimensions.get('window').width;
-  let dummyData = [1,2,3,4]
 
   function renderItem({ item, index }) {
     return (
-      <ListingCard />
+      <ListingCard listingData={item}/>
     );
   }
 
   return (
     <View style={styles.container}>
       <Carousel
-        data={dummyData}
+        data={data}
         renderItem={renderItem}
         sliderHeight={200}
         sliderWidth={deviceWidth}

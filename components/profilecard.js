@@ -19,7 +19,7 @@ export default class ProfileCard extends React.Component {
                     <TouchableOpacity>
                          <Ionicons name={'logo-linkedin'} size={35} color={'white'} />
                     </TouchableOpacity>
-                    <Image style={styles.profileImg} source={girl} />
+                    <Image style={styles.profileImg} source={{uri:this.props.userData.photoUrl}} />
                     <TouchableOpacity>
                          <Ionicons name={'md-images'} size={35} color={'white'} />
                     </TouchableOpacity>
@@ -28,8 +28,8 @@ export default class ProfileCard extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.textStyle}>Jack Renner</Text>
-                    <Text style={styles.textStyle}>Charlottesville, VA</Text>
+                    <Text style={styles.textStyle}>{this.props.userData.name}</Text>
+                    <Text style={styles.textStyle}>{this.props.userData.email}</Text>
                 </View>
             </View>
         )
