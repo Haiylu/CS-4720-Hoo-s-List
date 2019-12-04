@@ -35,7 +35,6 @@ export default class App extends React.Component {
     };
     this.listenForMesssage();
   }
-
   //Go ahead ad send my message state to firebase
   sendData() {
     ref.set({
@@ -64,8 +63,10 @@ export default class App extends React.Component {
       messages: [...this.state.messages, { message: this.state.lastTyped }],
     });
     this.sendData();
-
-    console.log(this.state.messages);
+    //console.log(this.state.messages);
+    this.setState({
+      lastTyped: '',//lasttyped set to null
+    })
   }
 
   onChangeText(testInbox) {
@@ -82,7 +83,6 @@ export default class App extends React.Component {
             return <Text> {item.message}</Text>;
           })}
         </ScrollView>
-
         <Button title={'Send'} onPress={() => this.onEnter()} />
 
         <TextInput
@@ -91,6 +91,7 @@ export default class App extends React.Component {
           placeholder="Enter your message here"
           placeholderTextColor="#abbabb"
           onChangeText={text => this.onChangeText(text)}
+          value={this.state.lastTyped}
         />
       </View>
     );
@@ -106,10 +107,9 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   textInput: {
-    paddingBottom: 300,
+    paddingBottom: 400,
     borderColor: 'red',
     borderWidth: 2,
   },
 });
-
 
