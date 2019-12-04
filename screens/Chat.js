@@ -65,7 +65,7 @@ export default class App extends React.Component {
     this.sendData();
     //console.log(this.state.messages);
     this.setState({
-      lastTyped: '',//last typed set to null
+      lastTyped: '',//lasttyped set to null
     })
   }
 
@@ -110,6 +110,9 @@ const styles = StyleSheet.create({
     paddingBottom: 400,
     borderColor: 'red',
     borderWidth: 2,
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
+    fontWeight: "bold"
   },
 });
-
