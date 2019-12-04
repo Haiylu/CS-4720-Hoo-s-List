@@ -1,161 +1,219 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, SafeAreaView, ActivityIndicator, Dimensions } from 'react-native';
-import {header, Button, SearchBar, ListItem, List} from 'react-native-elements';
-import _ from "lodash";
+import { StyleSheet, View, Text, FlatList, ActivityIndicator, Picker } from 'react-native';
+import { ListItem, SearchBar, Slider } from 'react-native-elements';
+import { Button } from 'react-native-paper';
+import data from '../assets/data.js';
 
 
- 
+export default class SearchScreen extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default class SearchScreen extends React.Component {
-    constructor(props){
-    super();
-    const userData = {
-        1:{
-            first: "Jack",
-            last:"Renner"
-        },
-        2:{
-            first: "Tom",
-            last:"Riddler"
-        },
-        3:{
-            first: "Harry",
-            last:"Potter"
-        },
-        4:{
-            first: "Dan",
-            last:"Smith"
-        }
-    }
+    this.state = {
+      loading: false,
+      dataPLS: [],
+      error: null,
+      category: '',
+      price: 500,
+      fullData: []
+    };
+
     
-    this.state = { 
-        loading: false,
-        data: [],
-        error: null,
-        query: "",
-        fullData: [],
-    };
-    }
-    contains = ({ name, email }, query) => {
-      const { first, last } = name;
-      if (first.includes(query) || last.includes(query)) {
-        return true;
-      }
-      return false;
-    };
-    
-    getUsers = (limit = 20, query = "") => {
-      return new Promise((resolve, reject) => {
-        if (query.length === 0) {
-          resolve(_.take(users, limit));
-        } else {
-          const formattedQuery = this.query.toLowerCase();
-          const results = _.filter(users, user => {
-            return contains(user, formattedQuery);
-          });
-          resolve(_.take(results, limit));
-        }
-      });
-    };
-
-    componentWillMount() {
-        this.fetchData();
-      }
-
-    fetchData = async () => {
-        const response = await fetch("https://randomuser.me/api?results=20");
-        const json = await response.json();
-        this.setState({ data: json.results });
-      };
-
-  handleSearch = text => {
-    console.log(text);
-    this.setState({query: text});
-    console.log(this.state.query)
-  };
- 
-  componentDidMount() {
-    this.makeRemoteRequest();
   }
 
-  makeRemoteRequest = () => {
-    this.setState({ loading: true });
+  componentDidMount() {
+    this.setState({
+      dataPLS: data
+    })
+   console.log(this.state.dataPLS)
 
-    this.getUsers()
-      .then(users => {
-        this.setState({
-          loading: false,
-          data: users,
-          fullData: users
-        });
-      })
-      .catch(error => {
-        this.setState({ error, loading: false });
-      });
-  };
+  }
+
+  // makeRemoteRequest = () => {
+  //   const url = `https://randomuser.me/api/?&results=20`;
+  //   this.setState({ loading: true });
+
+  //   fetch(url)
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       this.setState({
+  //         data: res.results,
+  //         error: res.error || null,
+  //         loading: false,
+  //       });
+  //       this.fullData = res.results;
+  //     })
+  //     .catch(error => {
+  //       this.setState({ error, loading: false });
+  //     });
+  // };
 
   renderSeparator = () => {
     return (
       <View
         style={{
           height: 1,
-          width: "86%",
-          backgroundColor: "#CED0CE",
-          marginLeft: "14%"
+          width: '86%',
+          backgroundColor: '#CED0CE',
+          marginLeft: '14%',
         }}
       />
     );
   };
-  renderHeader = () => {
-    return <SearchBar placeholder="Type Here..." lightTheme round onChangeText={this.handleSearch} />
+
+  searchFunction = (text) => {
+    this.setState({
+      value: text,
+    });
+    console.log(this.state.value)
+      const filteredData = this.state.fullData.filter(item => {
+      const listing = `${item.id}`;
+      //${item.category.toUpperCase()} 
+      const textInput = text.toUpperCase();
+      //const cat = this.category.toUpperCase();
+
+      return listing.indexOf(textInput) > -1;
+      // & listing.indexOf(this.state.category)
+    });
+    this.setState({
+      dataPLS: filteredData,
+    });
   };
 
-  renderFooter = () => {
-    if (!this.state.loading) return null;
+  // categoryClick = type => {
+  // this.setState({
+  // category: type,
+  // });
 
+  // const 
+  // };
+
+  renderHeader = () => {
     return (
-      <View
-        style={{
-          paddingVertical: 20,
-          borderTopWidth: 1,
-          borderColor: "#CED0CE"
-        }}
-      >
-        <ActivityIndicator animating size="large" />
-      </View>
+    <View style={styles.header}>
+      <SearchBar
+        placeholder="Type Here..."
+        lightTheme
+        round
+        value={this.state.value}
+        onChangeText={text => this.searchFunction(text)}
+        autoCorrect={false}
+      />
+      <Slider
+      style={styles.slide}
+      minimumTrackTintColor= 'orange'
+      maximumTrackTintColor= '#1D3461'
+      thumbTintColor= '#1D3461'
+      //thumbImage={require('./uvalogo.png')}
+      step={1}
+      minimumValue={0}
+      maximumValue={500}
+      value={this.state.price}
+      onValueChange={value => this.setState({price: value })}
+      onSlidingComplete={ value => this.pricePress(value) }
+      />
+    <Text>Price: $0 - ${this.state.price}</Text>
+  </View>
     );
   };
 
+  pricePress = value => {
+    this.setState({price: value})
+    const filteredData = this.state.fullData.filter(item => {
+      const listing = `${item.price}`;
+      //${item.category.toUpperCase()} 
+      //const textInput= category;
+      //const cat = this.category.toUpperCase();
+  
+      return listing <= this.state.price;
+      // & listing.indexOf(this.state.category)
+    });
+    this.setState({
+      dataPLS: filteredData,
+    });
+  }
+
+  catPress = category => {
+    
+    const filteredData = this.state.fullData.filter(item => {
+    const listing = `${item.type.toUpperCase()}`;
+    //${item.category.toUpperCase()} 
+    //const textInput= category;
+    const cat = this.state.category.toUpperCase();
+  
+    return listing.indexOf(cat) > -1;
+
+    // & listing.indexOf(this.state.category)
+  });
+  this.setState({
+    dataPLS: filteredData,
+  });
+  console.log(dataPLS);
+  }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ActivityIndicator />
+        </View>
+      );
+    }
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1 }}>
         <FlatList
-          data={this.state.data}
-          fullData={this.state.data}
-          renderItem={({ item }) => ( 
-            <Text key={item.login.uuid}>
-              {`${item.name.first} ${item.name.last}`}
-          </Text>
+          style={styles.list}
+          data={this.state.dataPLS}
+          renderItem={({ item }) => (
+            <ListItem
+              leftAvatar={{ source: { uri: item.img } }}
+              title={`${item.id}`}
+              subtitle={item.description} //can be more information on the listing
+            />
           )}
-          keyExtractor={item => item.login.uuid}
+          keyExtractor={item => item.id}
           ItemSeparatorComponent={this.renderSeparator}
           ListHeaderComponent={this.renderHeader}
-          ListFooterComponent={this.renderFooter}
         />
+        
+        <Picker 
+          style={styles.pick}
+          selectedValue={this.state.category}
+          mode='dropdown'
+          onValueChange={(itemValue, itemindex) => this.setState({category: itemValue})}>
+            <Picker.Item label="Select an option" value="" />
+            <Picker.Item label="Shoes" value="SHOES" />
+            <Picker.Item label="Jackets" value="JACKETS" />
+            <Picker.Item label="Shirts" value="SHIRTS" />
+            <Picker.Item label="Textbooks" value="TEXTBOOKS" />
+            <Picker.Item label="Furniture" value="FURNITURE" />
+        </Picker>
+        <Button title="Filter" onPress={this.catPress} backgroundColor='#1D3461'/>
       </View>
     );
   }
 }
+  const styles = StyleSheet.create({
+    header: {
+      marginTop: 20,
+      flex: 1, 
+      alignItems: 'stretch', 
+      justifyContent: 'center',
+    },
+    slide:{
+      width: 350,
+      marginLeft: 10,
+      marginRight: 10
+      
+    },
+    list:{
+      backgroundColor: 'white',
+    },
+    pick:{
+      borderTopColor: '#1D3461',
+      backgroundColor: 'white',
+      marginVertical: 0,
+       
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF",
-  },
-  headerStyle: {
-    justifyContent: "flex-end"
-  }
-});
-  
+    }
+  })

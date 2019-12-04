@@ -1,11 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import CameraAccess from '../components/CameraAccess'
+import Controls from '../components/Controls'
 
 export default class AddListingScreen extends React.Component {
     render(){
         return(
-            <View style={styles.container}>
-                <Text style={styles.textStyle}>This is the Add Listing Screen</Text>
+            <View >
+                <CameraAccess />
+                
             </View>
         )
     }
