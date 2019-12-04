@@ -83,8 +83,9 @@ export default class App extends React.Component {
             return <Text> {item.message}</Text>;
           })}
         </ScrollView>
-        <Button title={'Send'} onPress={() => this.onEnter()} />
-
+        <Button title={'Send'} style={{borderWidth: 6,
+        borderColor: 'red'}} onPress={() => this.onEnter()}  
+        />
         <TextInput
           style={styles.textInput}
           multiline={true}
@@ -92,7 +93,8 @@ export default class App extends React.Component {
           placeholderTextColor="#abbabb"
           onChangeText={text => this.onChangeText(text)}
           value={this.state.lastTyped}
-        />
+          />
+
       </View>
     );
   }
@@ -104,13 +106,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
-    padding: 8,
+    padding: 6,
   },
   textInput: {
     paddingBottom: 350,
     borderColor: 'red',
-    borderWidth: 2,
-    fontSize: 20,
+    borderWidth: 6,
+    fontSize: 25,
     textAlign: "center",
     margin: 10,
     fontWeight: "bold"
