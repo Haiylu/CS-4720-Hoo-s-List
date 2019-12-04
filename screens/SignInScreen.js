@@ -6,8 +6,6 @@ import { withNavigation } from 'react-navigation';
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
 
-
-
 if (!firebase.apps.length) {
     firebase.initializeApp({
       apiKey: 'AIzaSyDFydiY32gB1entJUDL3SRGgSx3axG3dJo',
@@ -22,7 +20,13 @@ if (!firebase.apps.length) {
   }
 
 
-var result;
+var result = {
+    user:{
+        name:'defaut',
+        email:'default email',
+        photoUrl:'defualt photot'
+    }
+};
 
 async function signInWithGoogleAsync() {
     try {
@@ -32,7 +36,7 @@ async function signInWithGoogleAsync() {
       });
   
       if (result.type === 'success') {
-        //console.log(result)
+        //console.log('in success')
         onSignIn(result)
         return result.accessToken;
       } else {
@@ -44,6 +48,7 @@ async function signInWithGoogleAsync() {
   }
 
   function isUserEqual(googleUser, firebaseUser) {
+      //console.log('in equal')
     if (firebaseUser) {
       var providerData = firebaseUser.providerData;
       for (var i = 0; i < providerData.length; i++) {
@@ -58,6 +63,7 @@ async function signInWithGoogleAsync() {
   }
 
   function onSignIn(googleUser) {
+    //console.log('in onsign')
     //console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
     var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
@@ -68,7 +74,9 @@ async function signInWithGoogleAsync() {
         var credential = firebase.auth.GoogleAuthProvider.credential(
             googleUser.idToken);
         // Sign in with credential from the Google user.
-        firebase.auth().signInWithCredential(credential).catch(function(error) {
+        firebase.auth().signInWithCredential(credential).then(function(data) {
+            //console.log('in then')
+        }).catch(function(error) {
           // Handle Errors here.
           console.log(error)
           var errorCode = error.code;
@@ -98,9 +106,9 @@ class SignInScreen extends React.Component {
     render(){
         return(
             <View style={styles.container}>
-                <Text style={styles.textStyle}>SignIn Screen</Text>
+                <Text style={styles.textStyle}>Proceed to App</Text>
                 <TouchableOpacity onPress={()=> this.props.navigation.navigate('TabNav',{userData: result.user})}>
-                    <Ionicons name={'md-arrow-forward'} size={35} color={'white'} />
+                    <Ionicons name={'md-arrow-forward'} size={50} color={'white'} />
                 </TouchableOpacity>
             
             </View>

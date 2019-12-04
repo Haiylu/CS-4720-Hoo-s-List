@@ -15,10 +15,18 @@ export default function CaroselView(props) {
     );
   }
 
+
+  if(props.listingData==''){
+    var outputData = data
+  }
+  else {
+    var outputData = props.listingData
+  }
+
   return (
     <View style={styles.container}>
       <Carousel
-        data={data}
+        data={outputData}
         renderItem={renderItem}
         sliderHeight={200}
         sliderWidth={deviceWidth}

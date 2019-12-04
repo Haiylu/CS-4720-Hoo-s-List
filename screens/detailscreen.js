@@ -47,7 +47,7 @@ export default class DetailScreen extends React.Component {
             <View style={styles.container}>
                 
                 <View style={styles.top}>
-                    <ListingCard details={true}/>
+                    <ListingCard listingData={data} details={true}/>
                     <View style={styles.detailCard}>
                         <Text style={styles.textStyle}>{data.description}</Text>
                     </View>

@@ -5,6 +5,7 @@ import SearchScreen from './screens/searchscreen.js';
 import AddListingScreen from './screens/addlistingscreen.js';
 import DetailScreen from './screens/detailscreen.js';
 import ChatScreen from './screens/Chat.js';
+import CameraScreen from './screens/CameraScreen.js';
 import SignInScreen from './screens/SignInScreen.js';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack'
@@ -60,6 +61,9 @@ const RootStack = createStackNavigator({
   },
   Chat: {
     screen: ChatScreen,
+  },
+  Camera: {
+    screen: CameraScreen,
   }
 },
   {
