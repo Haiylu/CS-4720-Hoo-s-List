@@ -22,9 +22,17 @@ class ListingCard extends React.Component {
         else{
             var detailButton;
         }
+        
+        if(listing.img!==''){
+            var image = <Image style={styles.itemImg} source={{uri: listing.img}} />;
+        }
+        else {
+            var image = <Image style={styles.itemImg} source={desk} />;
+        }
+
         return(
             <View style={styles.container}>
-                <Image style={styles.itemImg} source={desk} />
+                {image}
                 <View style={styles.infoContainer}>
                     <View style={styles.textContainer}>
                         <Text style={styles.textStyle}>Seller: {listing.owner.name}</Text>

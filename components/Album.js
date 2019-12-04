@@ -10,7 +10,8 @@ export default ({ captures = [], navigation }) => (
     >
         {captures.map(({ uri }) => (
             <View style={styles.albumImageContainer} key={uri}>
-                <TouchableOpacity onPress={() => navigation.navigate('addlistingscreen', {Item: uri})}>
+                <TouchableOpacity onPress={() => {navigation.state.params.onGoBack(uri)
+                    navigation.goBack()}}>
                     <Image source={{ uri }} style={styles.albumImage} />
                 </TouchableOpacity>
             </View>

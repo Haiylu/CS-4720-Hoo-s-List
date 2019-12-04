@@ -82,5 +82,3 @@ const styles = StyleSheet.create({
         fontFamily: 'Futura'
     }
 });
-
-//AppRegistry.registerComponent('Hoos List', () => App);

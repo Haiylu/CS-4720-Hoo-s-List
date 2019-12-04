@@ -78,9 +78,6 @@ export default class DetailScreen extends React.Component {
                     <TouchableOpacity style={styles.buttonStyle} onPress={()=> this.props.navigation.navigate('Chat')}>
                         <Text style={styles.textStyle}>Open Chat</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonStyle} onPress={()=> this.props.navigation.goBack()}>
-                        <Text style={styles.textStyle}>Button</Text>
-                    </TouchableOpacity>
                 </View>
  
             </View>

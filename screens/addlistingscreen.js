@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import Album from '../components/Album'
 import t from 'tcomb-form-native'
 import { Button } from 'react-native-paper';
@@ -101,7 +101,7 @@ export default class AddListingScreen extends React.Component {
         //push data to firebase
         ref.push({
             id:Math.trunc(Math.random()*100000),
-            img:'default pic',
+            img:this.state.img,
             owner:this.state.owner,
             coords:this.state.coords,
             price:value.price,
@@ -121,7 +121,17 @@ export default class AddListingScreen extends React.Component {
     }
     }
 
+    onSelectPhoto = data => {
+        this.setState({img:data});
+    };
+
     render(){
+        if(this.state.img!==''){
+            var image = <Image style={styles.profileImg} source={{uri:this.state.img}} />;
+        }
+        else{
+            var image;
+        }
         return(
             <View style={styles.container}>
                 <View style={{justifyContent:'center',alignItems:'center'}}>
@@ -130,14 +140,15 @@ export default class AddListingScreen extends React.Component {
                 <View>
                     <Form ref={c => this._form = c} type={ListingData} options={options}/>
 
-                    <TouchableOpacity style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}} 
-                        onPress={()=>this.props.navigation.navigate('Camera')}>
+                    <TouchableOpacity style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}} 
+                        onPress={()=>this.props.navigation.navigate('Camera',{onGoBack: (data)=>this.onSelectPhoto(data)})}>
                         <Text style={styles.textStyle}>Add a Photo!</Text>
                         <Ionicons name={'md-camera'} size={35} color={'white'} />
+                        {image}
                     </TouchableOpacity>
                 </View>
                 
-                <Button mode='contained' onPress={this.addListing} >Add Listing!</Button>
+                <Button mode='contained' color='#FB3640'onPress={this.addListing} >Add Listing!</Button>
             </View>
         )
     }
@@ -155,5 +166,12 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize: 25,
         fontFamily: 'Futura'
-    }
+    },
+    profileImg: {
+        height: 90,
+        width: 90,
+        borderRadius: 3,
+        borderColor: 'black',
+        margin:10,
+    },
 });

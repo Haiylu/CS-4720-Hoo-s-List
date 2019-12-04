@@ -5,8 +5,9 @@ import * as Permissions from 'expo-permissions';
 import Controls from './Controls';
 import Album from './Album';
 import styles from './styles';
+import { withNavigation } from 'react-navigation';
 
-export default class CameraPage extends React.Component {
+class CameraPage extends React.Component {
     camera = null;
 
     state = {
@@ -74,3 +75,5 @@ export default class CameraPage extends React.Component {
         );
     };
 };
+
+export default withNavigation(CameraPage);
