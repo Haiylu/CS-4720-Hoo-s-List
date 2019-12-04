@@ -65,7 +65,7 @@ export default class App extends React.Component {
     this.sendData();
     //console.log(this.state.messages);
     this.setState({
-      lastTyped: '',//lasttyped set to null
+      lastTyped: '',//last typed set to null
     })
   }
 
