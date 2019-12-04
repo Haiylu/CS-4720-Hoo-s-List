@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   textInput: {
-    paddingBottom: 400,
+    paddingBottom: 350,
     borderColor: 'red',
     borderWidth: 2,
     fontSize: 20,
