@@ -1,5 +1,5 @@
 const listing0 = {
-    id:'Nice big desk',
+    id:'0',
     img:'image source',
     owner:{
         name:'Jack Renner',
@@ -16,7 +16,7 @@ const listing0 = {
 }
 
 const listing1 = {
-    id:'Big table',
+    id:'1',
     img:'image source',
     owner:{
         name:'Jack Renner',
@@ -33,7 +33,7 @@ const listing1 = {
 }
 
 const listing2 = {
-    id:'Cool desk',
+    id:'2',
     img:'image source',
     owner:{
         name:'Jack Renner',
@@ -50,7 +50,7 @@ const listing2 = {
 }
 
 const listing3 = {
-    id:'Car',
+    id:'3',
     img:'image source',
     owner:{
         name:'Jack Renner',
@@ -67,7 +67,7 @@ const listing3 = {
 }
 
 const listing4 = {
-    id:'Speakers',
+    id:'4',
     img:'image source',
     owner:{
         name:'Tyler Smith',
@@ -84,7 +84,7 @@ const listing4 = {
 }
 
 const listing5 = {
-    id:'Fast car',
+    id:'5',
     img:'image source',
     owner:{
         name:'Tyler Smith',

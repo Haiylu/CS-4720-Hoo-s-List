@@ -16,7 +16,7 @@ export default ({
 }) => (
     <Grid style={styles.bottomToolbar}>
         <Row>
-            <Col style={styles.container}>
+            <Col style={[styles.container, styles.center]}>
                 <TouchableOpacity onPress={() => setFlashMode( 
                     flashMode === CameraFlashModes.on ? CameraFlashModes.off : CameraFlashModes.on 
                 )}>
@@ -27,7 +27,7 @@ export default ({
                     />
                 </TouchableOpacity>
             </Col>
-            <Col size={2} style={styles.container}>
+            <Col size={2} style={[styles.container, styles.center]}>
                 <TouchableWithoutFeedback
                     onPressIn={onCaptureIn}
                     onPressOut={onCaptureOut}
@@ -37,7 +37,7 @@ export default ({
                     </View>
                 </TouchableWithoutFeedback>
             </Col>
-            <Col style={styles.container}>
+            <Col style={[styles.container, styles.center]}>
                 <TouchableOpacity onPress={() => setCameraType(
                     cameraType === CameraTypes.back ? CameraTypes.front : CameraTypes.back
                 )}>

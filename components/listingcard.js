@@ -5,22 +5,6 @@ import { withNavigation } from 'react-navigation';
 
 import desk from '../assets/desk.jpeg'
 
-const temp = {
-    id:'uniqueID',
-    img:'image source',
-    owner:{
-        name:'Jack Renner',
-    },
-    coords:{
-        latitude: 38.0293,
-        longitude: -78.4767
-    },
-    price:'$150.00',
-    type:'Furniture',
-    description:'This is a 2010 IKEA Malmo desk that is in great condition. It has 3 drawers, and plenty of space to work on.',
-    location:'199 Washington Ave.'
-}
-
 class ListingCard extends React.Component {
     constructor(props) {
         super(props);
@@ -38,9 +22,17 @@ class ListingCard extends React.Component {
         else{
             var detailButton;
         }
+        
+        if(listing.img!==''){
+            var image = <Image style={styles.itemImg} source={{uri: listing.img}} />;
+        }
+        else {
+            var image = <Image style={styles.itemImg} source={desk} />;
+        }
+
         return(
             <View style={styles.container}>
-                <Image style={styles.itemImg} source={desk} />
+                {image}
                 <View style={styles.infoContainer}>
                     <View style={styles.textContainer}>
                         <Text style={styles.textStyle}>Seller: {listing.owner.name}</Text>
@@ -78,7 +70,6 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 1,
         width:300,
-        height:230,
         margin:10
     },
     infoContainer: {

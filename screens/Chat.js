@@ -35,7 +35,6 @@ export default class App extends React.Component {
     };
     this.listenForMesssage();
   }
-
   //Go ahead ad send my message state to firebase
   sendData() {
     ref.set({
@@ -64,8 +63,10 @@ export default class App extends React.Component {
       messages: [...this.state.messages, { message: this.state.lastTyped }],
     });
     this.sendData();
-
-    console.log(this.state.messages);
+    //console.log(this.state.messages);
+    this.setState({
+      lastTyped: '',//lasttyped set to null
+    })
   }
 
   onChangeText(testInbox) {
@@ -82,16 +83,18 @@ export default class App extends React.Component {
             return <Text> {item.message}</Text>;
           })}
         </ScrollView>
-
-        <Button title={'Send'} onPress={() => this.onEnter()} />
-
+        <Button title={'Send'} style={{borderWidth: 6,
+        borderColor: 'red'}} onPress={() => this.onEnter()}  
+        />
         <TextInput
           style={styles.textInput}
           multiline={true}
           placeholder="Enter your message here"
           placeholderTextColor="#abbabb"
           onChangeText={text => this.onChangeText(text)}
-        />
+          value={this.state.lastTyped}
+          />
+
       </View>
     );
   }
@@ -103,13 +106,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
-    padding: 8,
+    padding: 6,
   },
   textInput: {
-    paddingBottom: 300,
+    paddingBottom: 350,
     borderColor: 'red',
-    borderWidth: 2,
+    borderWidth: 6,
+    fontSize: 25,
+    textAlign: "center",
+    margin: 10,
+    fontWeight: "bold"
   },
 });
-
-
