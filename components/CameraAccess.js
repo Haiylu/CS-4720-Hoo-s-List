@@ -12,7 +12,7 @@ export default class CameraPage extends React.Component {
     state = {
         captures: [],
         capturing: null,
-        hasCameraPermission: null,
+        cameraPermission: null,
         cameraType: Camera.Constants.Type.back,
         flashMode: Camera.Constants.FlashMode.off,
     };
@@ -33,17 +33,17 @@ export default class CameraPage extends React.Component {
 
     async componentDidMount() {
         const camera = await Permissions.askAsync(Permissions.CAMERA);
-        const hasCameraPermission = (camera.status === 'granted');
+        const cameraPermission = (camera.status === 'granted');
 
-        this.setState({ hasCameraPermission });
+        this.setState({ cameraPermission });
     };
 
     render() {
-        const { hasCameraPermission, flashMode, cameraType, capturing, captures } = this.state;
+        const { cameraPermission, flashMode, cameraType, capturing, captures } = this.state;
 
-        if (hasCameraPermission === null) {
+        if (cameraPermission === null) {
             return <View />;
-        } else if (hasCameraPermission === false) {
+        } else if (cameraPermission === false) {
             return <Text>Access to camera has been denied.</Text>;
         }
 
@@ -53,12 +53,12 @@ export default class CameraPage extends React.Component {
                     <Camera
                         type={cameraType}
                         flashMode={flashMode}
-                        style={styles.preview}
+                        style={styles.deviceSize}
                         ref={camera => this.camera = camera}
                     />
                 </View>
 
-                {captures.length > 0 && <Album captures={captures}/>}
+                {captures.length > 0 && <Album captures={captures} navigation={this.props.navigation}/>}
 
                 <Controls
                     capturing={capturing}
