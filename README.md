@@ -1,5 +1,5 @@
 # CS-4720-Hoo-s-List
-It allows college students to buy and sell products
+It allows college students to buy and sell used products
 
 # Setup Instructions
 
